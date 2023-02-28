@@ -1,3 +1,56 @@
-.App{
-    color: red;
+body {
+  box-sizing: border-box;
+  background-color: #fb6b6b;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 42px;
+}
+
+.Header img {
+  width: 52px;
+  height: 60px;
+  margin-right: 20px;
+}
+
+.Header h1 {
+  font-family: "Righteous", cursive;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44.7px;
+}
+
+.Deck {
+  margin-top: 51px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 70px;
+}
+
+.Flashcard1 {
+  width: 300px;
+  height: 65px;
+  background-color: #ffffff;
+  margin-bottom: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+}
+
+.Footer {
+    height: 70px;
+    width: 100%;
+    background-color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
