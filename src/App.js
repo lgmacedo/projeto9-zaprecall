@@ -11,13 +11,16 @@ import cards from "./cards.js";
 function App() {
   const [recallStart, setRecallStart] = useState(false);
   const [doneCards, setDoneCards] = useState(0);
+  const [answers, setAnswers] = useState([]);
 
   function startRecall() {
     setRecallStart(true);
   }
 
-  function increaseDoneCards() {
+  function increaseDoneCards(resposta) {
     setDoneCards(doneCards + 1);
+    const newAnswers = [...answers, resposta];
+    setAnswers(newAnswers);
   }
 
   return (
@@ -33,6 +36,7 @@ function App() {
         recallStart={recallStart}
         doneCards={doneCards}
         totalCards={cards.length}
+        answers={answers}
       />
     </AppContainer>
   );

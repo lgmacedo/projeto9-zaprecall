@@ -13,7 +13,7 @@ export default function Flashcard({ card, numero, increaseDoneCards }) {
 
   function closeCard(answer) {
     setCardStatus(cardStatus + 1);
-    increaseDoneCards();
+    increaseDoneCards(answer);
     setCardFinal(answer);
   }
   return (
