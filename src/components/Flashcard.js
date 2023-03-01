@@ -11,44 +11,52 @@ export default function Flashcard({ card, numero, increaseDoneCards }) {
   const [cardStatus, setCardStatus] = useState(1);
   const [cardFinal, setCardFinal] = useState(0);
 
-  const icones = [icone1, icone2, icone3];
-
   function closeCard(answer) {
     setCardStatus(cardStatus + 1);
     increaseDoneCards();
     setCardFinal(answer);
   }
   return (
-    <>
+    <div data-test="flashcard">
       <Flashcard1 cardStatus={cardStatus}>
-        <p>Pergunta {numero + 1}</p>
+        <p data-test="flashcard-text">Pergunta {numero + 1}</p>
         <img
+          data-test="play-btn"
           src={seta_play}
           alt="start-play"
           onClick={() => setCardStatus(cardStatus + 1)}
         />
       </Flashcard1>
       <Flashcard2 cardStatus={cardStatus}>
-        <p>{card.question}</p>
+        <p data-test="flashcard-text">{card.question}</p>
         <img
+          data-test="turn-btn"
           src={seta_virar}
           alt="turn-card-over"
           onClick={() => setCardStatus(cardStatus + 1)}
         />
       </Flashcard2>
       <Flashcard3 cardStatus={cardStatus}>
-        <p>{card.answer}</p>
+        <p data-test="flashcard-text">{card.answer}</p>
         <div>
-          <div onClick={() => closeCard(1)}>Não lembrei</div>
-          <div onClick={() => closeCard(2)}>Quase não lembrei</div>
-          <div onClick={() => closeCard(3)}>Zap!</div>
+          <div data-test="no-btn" onClick={() => closeCard(1)}>
+            Não lembrei
+          </div>
+          <div data-test="partial-btn" onClick={() => closeCard(2)}>
+            Quase não lembrei
+          </div>
+          <div data-test="zap-btn" onClick={() => closeCard(3)}>
+            Zap!
+          </div>
         </div>
       </Flashcard3>
       <Flashcard4 cardStatus={cardStatus} cardFinal={cardFinal}>
-        <p>Pergunta {numero + 1}</p>
-        <img src={icones[cardFinal - 1]} alt="card-answer" />
+        <p data-test="flashcard-text">Pergunta {numero + 1}</p>
+        <Errado data-test="no-icon" cardFinal={cardFinal} src={icone1} alt="card-answer" />
+        <Quase data-test="partial-icon" cardFinal={cardFinal} src={icone2} alt="card-answer" />
+        <Certo data-test="zap-icon" cardFinal={cardFinal} src={icone3} alt="card-answer" />
       </Flashcard4>
-    </>
+    </div>
   );
 }
 
@@ -180,13 +188,32 @@ const Flashcard4 = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 19.2px;
-    color: ${({cardFinal})=>cardFinal === 3 ? "#2FBE34" : (cardFinal === 2 ? "#FF922E" : "#FF3030")};
+    color: ${({ cardFinal }) =>
+      cardFinal === 3 ? "#2FBE34" : cardFinal === 2 ? "#FF922E" : "#FF3030"};
     text-decoration-line: line-through;
   }
-  img {
-    width: 23px;
-    height: 23px;
-    margin-right: 15px;
-    cursor: pointer;
-  }
+`;
+
+const Errado = styled.img`
+  display: ${({ cardFinal }) => (cardFinal === 1 ? "flex" : "none")};
+  width: 23px;
+  height: 23px;
+  margin-right: 15px;
+  cursor: pointer;
+`;
+
+const Quase = styled.img`
+  display: ${({ cardFinal }) => (cardFinal === 2 ? "flex" : "none")};
+  width: 23px;
+  height: 23px;
+  margin-right: 15px;
+  cursor: pointer;
+`;
+
+const Certo = styled.img`
+  display: ${({ cardFinal }) => (cardFinal === 3 ? "flex" : "none")};
+  width: 23px;
+  height: 23px;
+  margin-right: 15px;
+  cursor: pointer;
 `;
