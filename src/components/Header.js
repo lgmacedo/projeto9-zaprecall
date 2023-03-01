@@ -1,17 +1,17 @@
-import styled from 'styled-components';
-import logo from '../assets/logo.png'
+import styled from "styled-components";
+import logo from "../assets/logo.png";
 
-export default function Header() {
+export default function Header({ recallStart }) {
   return (
-  <HeaderContainer>
-    <img src={logo} alt="zaprecall-logo"/>
-    <h1>ZapRecall</h1>
-  </HeaderContainer>
+    <HeaderContainer recallStart={recallStart}>
+      <img src={logo} alt="zaprecall-logo" />
+      <h1>ZapRecall</h1>
+    </HeaderContainer>
   );
 }
 
 const HeaderContainer = styled.div`
-  display: flex;
+  display: ${({ recallStart }) => (recallStart ? "flex" : "none")};
   align-items: center;
   justify-content: center;
   margin-top: 42px;
@@ -27,4 +27,4 @@ const HeaderContainer = styled.div`
     font-size: 36px;
     line-height: 44.7px;
   }
-`
+`;

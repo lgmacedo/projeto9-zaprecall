@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function Footer({ doneCards, totalCards }) {
+export default function Footer({ recallStart, doneCards, totalCards }) {
   return (
-    <FooterContainer data-test="footer">
+    <FooterContainer data-test="footer" recallStart={recallStart}>
       <p>
         {doneCards}/{totalCards} CONCLUÍDOS
       </p>
@@ -23,7 +23,7 @@ const FooterContainer = styled.div`
   font-size: 18px;
   color: #333333;
   line-height: 22px;
-  display: flex;
+  display: ${({ recallStart }) => (recallStart ? "flex" : "none")};
   justify-content: center;
   align-items: center;
   box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
