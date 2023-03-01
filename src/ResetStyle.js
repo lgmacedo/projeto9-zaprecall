@@ -1,9 +1,7 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+import { createGlobalStyle } from "styled-components";
 
-html, body, div, span, applet, object, iframe,
+const ResetStyle = createGlobalStyle`
+    html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -46,3 +44,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+`;
+
+export default ResetStyle;

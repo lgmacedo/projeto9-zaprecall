@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import styled from 'styled-components';
 
 import Deck from "./components/Deck";
 import Header from "./components/Header";
@@ -15,12 +16,17 @@ function App() {
 
   console.log(doneCards);
   return (
-    <div className="App">
+    <AppContainer>
       <Header/>
       <Deck cards = {cards} increaseDoneCards={increaseDoneCards}/>
       <Footer doneCards={doneCards} totalCards={cards.length}/>
-    </div>
+    </AppContainer>
   );
 }
 
 export default App;
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
