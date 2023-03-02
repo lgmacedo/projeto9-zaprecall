@@ -12,6 +12,7 @@ function App() {
   const [recallStart, setRecallStart] = useState(false);
   const [doneCards, setDoneCards] = useState(0);
   const [answers, setAnswers] = useState([]);
+  const [gameDone, setGameDone] = useState(0);
 
   function startRecall() {
     setRecallStart(true);
@@ -21,6 +22,13 @@ function App() {
     setDoneCards(doneCards + 1);
     const newAnswers = [...answers, resposta];
     setAnswers(newAnswers);
+    if(newAnswers.length === cards.length){
+      if(newAnswers.includes(1)){
+        setGameDone(1);
+      }else{
+        setGameDone(2);
+      }
+    }
   }
 
   return (
@@ -31,12 +39,14 @@ function App() {
         recallStart={recallStart}
         cards={cards}
         increaseDoneCards={increaseDoneCards}
+        gameDone={gameDone}
       />
       <Footer
         recallStart={recallStart}
         doneCards={doneCards}
         totalCards={cards.length}
         answers={answers}
+        gameDone={gameDone}
       />
     </AppContainer>
   );
