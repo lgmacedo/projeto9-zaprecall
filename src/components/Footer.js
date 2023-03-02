@@ -11,26 +11,36 @@ export default function Footer({
   doneCards,
   totalCards,
   answers,
-  gameDone
+  gameDone,
 }) {
+  const finalJogo = [
+    {
+      image: sad,
+      title: "Putz...",
+      text: "Ainda faltam alguns... Mas não desanime!",
+    },
+    {
+      image: party,
+      title: "Parabéns!",
+      text: "Você não esqueceu de nenhum flashcard!",
+    },
+  ];
   return (
-    <FooterContainer data-test="footer" recallStart={recallStart} gameDone={gameDone}>
-      <div data-test="finish-text">
-        <FinalSuccess gameDone={gameDone}>
-          <div>
-            <img src={party} alt="happy-party"/>
-            <p>Parabéns!</p>
-          </div>
-          <p>Você não esqueceu de nenhum flashcard!</p>
-        </FinalSuccess>
-        <FinalFailed gameDone={gameDone}>
-          <div>
-            <img src={sad} alt="sad-emoji"/>
-            <p>Putz...</p>
-          </div>
-          <p>Ainda faltam alguns... Mas não desanime!</p>
-        </FinalFailed>
-      </div>
+    <FooterContainer
+      data-test="footer"
+      recallStart={recallStart}
+      gameDone={gameDone}
+    >
+      <GameFinal data-test="finish-text" gameDone={gameDone}>
+        <div>
+          <img
+            src={gameDone === 1 ? finalJogo[0].image : finalJogo[1].image}
+            alt="happy-party"
+          />
+          <p>{gameDone === 1 ? finalJogo[0].title : finalJogo[1].title}</p>
+        </div>
+        <p>{gameDone === 1 ? finalJogo[0].text : finalJogo[1].text}</p>
+      </GameFinal>
       <p>
         {doneCards}/{totalCards} CONCLUÍDOS
       </p>
@@ -74,66 +84,37 @@ const AnswersContainer = styled.div`
   display: flex;
   margin-top: 5px;
   column-gap: 5px;
-  img{
+  img {
     width: 23px;
     height: 23px;
   }
 `;
 
-const FinalSuccess = styled.div`
-  display: ${({ gameDone }) => (gameDone === 2 ? "flex" : "none")};
+const GameFinal = styled.div`
+  display: ${({ gameDone }) => (gameDone ? "flex" : "none")};
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   min-height: 100px;
   row-gap: 14px;
-  img{
+  img {
     width: 23px;
     height: 23px;
   }
-  p{
+  p {
     font-weight: 400;
     font-size: 18px;
     line-height: 21.6px;
     max-width: 222px;
     text-align: center;
   }
-  div{
+  div {
     display: flex;
     align-items: center;
     column-gap: 12px;
   }
-  div p{
+  div p {
     font-weight: 700;
   }
-`
-
-const FinalFailed = styled.div`
-  display: ${({ gameDone }) => (gameDone === 1 ? "flex" : "none")};
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 100px;
-  row-gap: 14px;
-  img{
-    width: 23px;
-    height: 23px;
-  }
-  p{
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21.6px;
-    max-width: 222px;
-    text-align: center;
-  }
-  div{
-    display: flex;
-    align-items: center;
-    column-gap: 12px;
-  }
-  div p{
-    font-weight: 700;
-  }
-`
+`;
