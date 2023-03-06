@@ -13,6 +13,9 @@ export default function Footer({
   answers,
   gameDone,
 }) {
+  const wrongAnswer = 1;
+  const almostRightAnswer = 2;
+
   const finalJogo = [
     {
       image: sad,
@@ -47,10 +50,10 @@ export default function Footer({
       <AnswersContainer>
         {answers.map((a) => (
           <img
-            src={a === 1 ? icone1 : a === 2 ? icone2 : icone3}
+            src={a === wrongAnswer ? icone1 : a === almostRightAnswer ? icone2 : icone3}
             alt="answer-correct"
             data-test={
-              a === 1 ? "no-icon" : a === 2 ? "partial-icon" : "zap-icon"
+              a === wrongAnswer ? "no-icon" : a === almostRightAnswer ? "partial-icon" : "zap-icon"
             }
           />
         ))}

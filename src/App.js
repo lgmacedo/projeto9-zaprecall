@@ -14,6 +14,9 @@ function App() {
   const [answers, setAnswers] = useState([]);
   const [gameDone, setGameDone] = useState(0);
 
+  const gameDoneFlawed = 1;
+  const gameDoneFlawless = 2;
+
   function startRecall() {
     setRecallStart(true);
   }
@@ -24,9 +27,9 @@ function App() {
     setAnswers(newAnswers);
     if(newAnswers.length === cards.length){
       if(newAnswers.includes(1)){
-        setGameDone(1);
+        setGameDone(gameDoneFlawed);
       }else{
-        setGameDone(2);
+        setGameDone(gameDoneFlawless);
       }
     }
   }
